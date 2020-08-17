@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="snowflake" version="42" database="Cache" >
+	<schema name="US_Police_Fatalities_Snowflake" schemaname="US_Police_Fatalities_Snowflake" defo="y" >
+		<table name="Age" storage="" >
+			<column name="idAge" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idAgeGroup" type="INTEGER" jt="4" mandatory="y" />
+			<index name="PK_Table_6" unique="PRIMARY_KEY" >
+				<column name="idAge" />
+			</index>
+			<index name="idx_Age" unique="NORMAL" >
+				<column name="idAgeGroup" />
+			</index>
+			<fk name="Fk_0" to_schema="US_Police_Fatalities_Snowflake" to_table="AgeGroup" >
+				<fk_column name="idAgeGroup" pk="idAgeGroup" />
+			</fk>
+		</table>
+		<table name="AgeGroup" storage="" >
+			<column name="idAgeGroup" type="INTEGER" jt="4" mandatory="y" />
+			<column name="AGName" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<index name="PK_Table_4" unique="PRIMARY_KEY" >
+				<column name="idAgeGroup" />
+			</index>
+		</table>
+		<table name="City" storage="" >
+			<column name="idCity" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idState" type="INTEGER" length="2" jt="4" mandatory="y" />
+			<column name="CName" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="CHighSchoolLevel" type="DOUBLE" jt="8" mandatory="y" />
+			<column name="CPovertyLevel" type="DOUBLE" jt="8" mandatory="y" />
+			<column name="CHouseholdIncome" type="INTEGER" jt="4" mandatory="y" />
+			<column name="CShareWhite" type="DOUBLE" jt="8" mandatory="y" />
+			<column name="CShareBlack" type="DOUBLE" jt="8" mandatory="y" />
+			<column name="CShareNativeAmerican" type="DOUBLE" jt="8" mandatory="y" />
+			<column name="CShareAsian" type="DOUBLE" jt="8" mandatory="y" />
+			<column name="CShareHispanic" type="DOUBLE" jt="8" mandatory="y" />
+			<index name="PK_Table_1" unique="PRIMARY_KEY" >
+				<column name="idCity" />
+			</index>
+			<index name="idx_City" unique="NORMAL" >
+				<column name="idState" />
+			</index>
+			<fk name="Fk_0" to_schema="US_Police_Fatalities_Snowflake" to_table="State" >
+				<fk_column name="idState" pk="idState" />
+			</fk>
+		</table>
+		<table name="TDay" storage="" >
+			<column name="idDay" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idMonth" type="INTEGER" jt="4" mandatory="y" />
+			<column name="DDateVal" type="DATE" jt="91" mandatory="y" />
+			<index name="PK_Table_1" unique="PRIMARY_KEY" >
+				<column name="idDay" />
+			</index>
+			<index name="idx_TDay" unique="NORMAL" >
+				<column name="idMonth" />
+			</index>
+			<fk name="Fk_0" to_schema="US_Police_Fatalities_Snowflake" to_table="TMonth" >
+				<fk_column name="idMonth" pk="idMonth" />
+			</fk>
+		</table>
+		<table name="Fatalities" storage="" >
+			<column name="idDay" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idCity" type="INTEGER" length="50" jt="4" mandatory="y" />
+			<column name="idAge" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idWeapon" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idRace" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idMentalIllness" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idGender" type="INTEGER" jt="4" mandatory="y" />
+			<column name="NumberOfFatalities" type="INTEGER" jt="4" mandatory="y" />
+			<index name="idx_Fatalities" unique="NORMAL" >
+				<column name="idCity" />
+			</index>
+			<index name="idx_Fatalities" unique="NORMAL" >
+				<column name="idDay" />
+			</index>
+			<index name="idx_Fatalities" unique="NORMAL" >
+				<column name="idMentalIllness" />
+			</index>
+			<index name="idx_Fatalities" unique="NORMAL" >
+				<column name="idGender" />
+			</index>
+			<index name="idx_Fatalities" unique="NORMAL" >
+				<column name="idRace" />
+			</index>
+			<index name="idx_Fatalities" unique="NORMAL" >
+				<column name="idWeapon" />
+			</index>
+			<index name="idx_Fatalities" unique="NORMAL" >
+				<column name="idAge" />
+			</index>
+			<index name="Idx" unique="PRIMARY_KEY" >
+				<column name="idDay" />
+				<column name="idCity" />
+				<column name="idAge" />
+				<column name="idWeapon" />
+				<column name="idRace" />
+				<column name="idMentalIllness" />
+				<column name="idGender" />
+			</index>
+			<fk name="Fk_0" to_schema="US_Police_Fatalities_Snowflake" to_table="City" >
+				<fk_column name="idCity" pk="idCity" />
+			</fk>
+			<fk name="Fk_1" to_schema="US_Police_Fatalities_Snowflake" to_table="TDay" >
+				<fk_column name="idDay" pk="idDay" />
+			</fk>
+			<fk name="Fk_2" to_schema="US_Police_Fatalities_Snowflake" to_table="MentalIllness" >
+				<fk_column name="idMentalIllness" pk="idMentalIllness" />
+			</fk>
+			<fk name="Fk_3" to_schema="US_Police_Fatalities_Snowflake" to_table="Gender" >
+				<fk_column name="idGender" pk="idGender" />
+			</fk>
+			<fk name="Fk_4" to_schema="US_Police_Fatalities_Snowflake" to_table="Race" >
+				<fk_column name="idRace" pk="idRace" />
+			</fk>
+			<fk name="Fk_5" to_schema="US_Police_Fatalities_Snowflake" to_table="Weapon" >
+				<fk_column name="idWeapon" pk="idWeapon" />
+			</fk>
+			<fk name="Fk_6" to_schema="US_Police_Fatalities_Snowflake" to_table="Age" >
+				<fk_column name="idAge" pk="idAge" />
+			</fk>
+		</table>
+		<table name="Gender" storage="" >
+			<column name="idGender" type="INTEGER" jt="4" mandatory="y" />
+			<column name="GName" type="VARCHAR" length="6" jt="12" mandatory="y" />
+			<index name="PK_Table_7" unique="PRIMARY_KEY" >
+				<column name="idGender" />
+			</index>
+		</table>
+		<table name="MentalIllness" storage="" >
+			<column name="idMentalIllness" type="INTEGER" jt="4" mandatory="y" />
+			<column name="MIVal" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<index name="PK_Table_7" unique="PRIMARY_KEY" >
+				<column name="idMentalIllness" />
+			</index>
+		</table>
+		<table name="TMonth" storage="" >
+			<column name="idMonth" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idYear" type="INTEGER" jt="4" mandatory="y" />
+			<column name="MNumVal" type="INTEGER" jt="4" mandatory="y" />
+			<column name="MNameVal" type="VARCHAR" length="20" jt="12" mandatory="y" />
+			<index name="PK_Table_2" unique="PRIMARY_KEY" >
+				<column name="idMonth" />
+			</index>
+			<index name="idx_TMonth" unique="NORMAL" >
+				<column name="idYear" />
+			</index>
+			<fk name="Fk_0" to_schema="US_Police_Fatalities_Snowflake" to_table="TYear" >
+				<fk_column name="idYear" pk="idYear" />
+			</fk>
+		</table>
+		<table name="Race" storage="" >
+			<column name="idRace" type="INTEGER" jt="4" mandatory="y" />
+			<column name="RName" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<index name="PK_Table_6" unique="PRIMARY_KEY" >
+				<column name="idRace" />
+			</index>
+		</table>
+		<table name="State" storage="" >
+			<column name="idState" type="INTEGER" length="2" jt="4" mandatory="y" />
+			<column name="SCode" type="VARCHAR" length="2" jt="12" mandatory="y" />
+			<column name="SName" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<index name="PK_Table" unique="PRIMARY_KEY" >
+				<column name="idState" />
+			</index>
+		</table>
+		<table name="Weapon" storage="" >
+			<column name="idWeapon" type="INTEGER" jt="4" mandatory="y" />
+			<column name="idClass" type="INTEGER" jt="4" mandatory="y" />
+			<column name="WName" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<index name="PK_Table_6" unique="PRIMARY_KEY" >
+				<column name="idWeapon" />
+			</index>
+			<index name="idx_Weapon" unique="NORMAL" >
+				<column name="idClass" />
+			</index>
+			<fk name="Fk_0" to_schema="US_Police_Fatalities_Snowflake" to_table="WeaponClass" >
+				<fk_column name="idClass" pk="idClass" />
+			</fk>
+		</table>
+		<table name="WeaponClass" storage="" >
+			<column name="idClass" type="INTEGER" jt="4" mandatory="y" />
+			<column name="WCName" type="INTEGER" jt="4" mandatory="y" />
+			<index name="PK_Table_3" unique="PRIMARY_KEY" >
+				<column name="idClass" />
+			</index>
+		</table>
+		<table name="TYear" storage="" >
+			<column name="idYear" type="INTEGER" jt="4" mandatory="y" />
+			<column name="YNumVal" type="INTEGER" jt="4" mandatory="y" />
+			<index name="PK_Table_5" unique="PRIMARY_KEY" >
+				<column name="idYear" />
+			</index>
+		</table>
+	</schema>
+	<connector name="Con_0" database="Cache" port="0" />
+	<layout name="Default" tab_index="0" joined_routing="y" >
+		<entity schema="US_Police_Fatalities_Snowflake" name="Age" x="468" y="182" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="AgeGroup" x="494" y="39" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="City" x="845" y="117" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="TDay" x="234" y="78" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="Fatalities" x="481" y="351" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="Gender" x="923" y="364" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="MentalIllness" x="637" y="676" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="TMonth" x="39" y="52" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="Race" x="897" y="663" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="State" x="1105" y="169" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="Weapon" x="247" y="572" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="WeaponClass" x="234" y="702" />
+		<entity schema="US_Police_Fatalities_Snowflake" name="TYear" x="91" y="299" />
+		<group name="Age" color="6666ff" >
+			<entity schema="US_Police_Fatalities_Snowflake" name="Age" />
+			<entity schema="US_Police_Fatalities_Snowflake" name="AgeGroup" />
+		</group>
+		<group name="Fact" color="66ff66" >
+			<entity schema="US_Police_Fatalities_Snowflake" name="Fatalities" />
+		</group>
+		<group name="Gender" color="ff9900" >
+			<entity schema="US_Police_Fatalities_Snowflake" name="Gender" />
+		</group>
+		<group name="Location" color="ff0000" >
+			<entity schema="US_Police_Fatalities_Snowflake" name="City" />
+			<entity schema="US_Police_Fatalities_Snowflake" name="State" />
+		</group>
+		<group name="Mental Illness" color="ffff33" >
+			<entity schema="US_Police_Fatalities_Snowflake" name="MentalIllness" />
+		</group>
+		<group name="Race" color="993300" >
+			<entity schema="US_Police_Fatalities_Snowflake" name="Race" />
+		</group>
+		<group name="Time " color="00ccff" >
+			<entity schema="US_Police_Fatalities_Snowflake" name="TMonth" />
+			<entity schema="US_Police_Fatalities_Snowflake" name="TDay" />
+			<entity schema="US_Police_Fatalities_Snowflake" name="TYear" />
+		</group>
+		<group name="Weapon" color="333333" >
+			<entity schema="US_Police_Fatalities_Snowflake" name="WeaponClass" />
+			<entity schema="US_Police_Fatalities_Snowflake" name="Weapon" />
+		</group>
+		<query name="Sql_000" tab_index="0" >
+			<string> <![CDATA[CREATE SCHEMA Test;
+
+CREATE TABLE Test.Age ( 
+    idAge INTEGER NOT NULL    ,
+    idAgeGroup INTEGER NOT NULL    ,
+CONSTRAINT PK_Table_6 PRIMARY KEY ( idAge )
+ ) ;
+
+CREATE INDEX idx_Age ON Test.Age ( idAgeGroup );
+
+ALTER TABLE Test.Age ADD FOREIGN KEY Fk_0 ( idAgeGroup ) REFERENCES Test.AgeGroup( idAgeGroup ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+]]> </string>
+		</query>
+	</layout>
+</project>

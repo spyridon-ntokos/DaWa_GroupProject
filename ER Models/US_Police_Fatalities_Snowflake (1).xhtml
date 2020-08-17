@@ -1,0 +1,748 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN' 'http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' >
+<head>
+<title>Database documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
+<style type='text/css'>
+	 #dbs {font-family:Tahoma,Dialog,Sans-Serif;font-size:11px;background:#fff;width:80%;border-collapse:collapse;text-align:left;margin:20px;}
+	 #dbs thead{background:#e6ecf9;}
+	 #dbs th{font-size:12px;font-weight:bold;color:#039;border-bottom:2px solid #6678b1;padding:7px 8px;}
+	 #dbs td{border-bottom:1px solid #ccc;color:#336;padding:3px 8px;white-space: pre;}
+	 td.subpart{font-weight:bold;background:#e6ecf9}
+	 td.name{background:#f2f5fb}
+	 #dbs tbody tr:hover td{color:#000;background:#fffcea;}
+</style>
+</head>
+
+<body>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='shape-rendering:crispEdges;shape-rendering:crispEdges;'   width='1274' height='926' viewbox='0 0 1274 926' >
+<style type='text/css'>
+  text                { text-rendering: optimizeLegibility; fill:#444444; font-family: Tahoma,Trebuchet MS,Dialog,Arial; font-size:11px; }
+  text.coltype        { fill:#a9bdc6; font-size:10px; }
+  path                { stroke:#776c57; stroke-width:1; fill: none; }
+  rect.grp            { opacity:0.5; stroke:#70706f; stroke-width:1; }
+  rect.table          { fill:white; stroke:none; }
+  rect.tableborder    { fill:none; filter:url(#dropShadow); stroke:#939ea4; stroke-width:1; }
+  rect.callout        { fill:#f1fbf1; stroke:none; }
+  rect.calloutborder  { fill:none; filter:url(#dropShadow); stroke:#8d9380; stroke-width:1; }
+</style>
+<defs>
+  <linearGradient id='grTableHeader' x1='0' x2='0' y1='0' y2='1'>
+    <stop offset='0%' stop-color='#f2f4f7' />
+    <stop offset='50%' stop-color='#e2ecf7' />
+    <stop offset='51%' stop-color='#cfdcf6' />
+    <stop offset='100%' stop-color='#deeef4' />
+  </linearGradient>
+
+  <pattern id='imageBackground' patternUnits='userSpaceOnUse' x='0' y='0' width='42' height='42' viewBox='0 0 42 42'>
+    <rect x='0' y='0' width='42' height='42' style='fill:#f6f5ed;' />
+    <line x1='0' y1='15' x2='42' y2='15' style='stroke:#d7d7d7;stroke-width:1;stroke-dasharray:6,3,6,3,6,3,12;'  />
+    <line x1='15' y1='0' x2='15' y2='42' style='stroke:#d7d7d7;stroke-width:1;stroke-dasharray:6,3,6,3,6,3,12;'  />
+  </pattern>
+
+  <filter id='dropShadow' filterUnits='objectBoundingBox' x='-1.2' y='-1.2' width='6' height='6'>
+    <feGaussianBlur in='SourceAlpha' stdDeviation='2' />
+    <feComponentTransfer result='shadow'>
+      <feFuncA type='linear' slope='.7' intercept='0' />
+      </feComponentTransfer>
+    <feComposite in2='shadow' in='SourceGraphic'/>
+  </filter>
+  <radialGradient id='legendGradient' fx='5%' fy='5%' r='75%' spreadMethod='pad'>
+          <stop offset='0%' stop-color='#6985ff' stop-opacity='1'/> 
+          <stop offset='100%' stop-color='#1e2a5f' stop-opacity='1' /> 
+   </radialGradient>
+
+  <pattern id='hintPointerSV' patternUnits='userSpaceOnUse' x='0' y='0' width='13' height='13' viewBox='0 0 13 13' >
+      <path d='M 0,0 Q 7,7,0,13 Q 13,7,13,0' style='fill:#f1fbf1;stroke:#8d9380;' />
+  </pattern>
+
+  <pattern id='hintPointerSE' patternUnits='userSpaceOnUse' x='0' y='0' width='13' height='13' viewBox='0 0 13 13' >
+      <path d='M 0,0 Q 3,7,13,13 Q 7,7,13,0' style='fill:#f1fbf1;stroke:#8d9380;' />
+  </pattern>
+
+  <pattern id='hintPointerNV' patternUnits='userSpaceOnUse' x='0' y='0' width='13' height='13' viewBox='0 0 13 13' >
+      <path d='M 0,13 Q 7,7,0,0 Q 13,7,13,13' style='fill:#f1fbf1;stroke:#8d9380;' />
+  </pattern>
+
+  <pattern id='hintPointerNE' patternUnits='userSpaceOnUse' x='0' y='0' width='13' height='13' viewBox='0 0 13 13' >
+      <path d='M 0,13 Q 3,7,13,0 Q 7,7,13,13' style='fill:#f1fbf1;stroke:#8d9380;' />
+  </pattern>
+
+  <symbol id='pk' overflow='visible' >
+      <path d='M 5 6 A 3 3 0 1 1 7 6 L 8 7 L 7 8 L 8 9 L 7,10 L 6 11 L 5,10 L 5,6 z' style='fill:#f2e421;stroke-width:0.7;stroke:#5f3312;stroke-linejoin:round;shape-rendering:geometricPrecision;' />
+  </symbol>
+
+  <symbol id='idx' overflow='visible' >
+      <path d='M 4,3 L 9,6 L 4,9 z' style='fill:#f2e421;stroke-width:0.7;stroke:#5f3312;stroke-linejoin:round;shape-rendering:geometricPrecision' />
+  </symbol>
+
+  <marker id='arrow' viewBox='0 0 6 6' refX='0' refY='3' markerUnits='strokeWidth' markerWidth='6' markerHeight='6' orient='auto'>
+    <path d='M 0,0 L 6, 3 L 0,6 z' style='fill:#666666; stroke-width:0px;' />
+  </marker>
+
+  <marker id='foot' viewBox='0 0 6 6' refX='6' refY='3' markerUnits='strokeWidth' markerWidth='6' markerHeight='6' orient='auto'>
+    <path d='M 0,3 L 13, 3 z' />
+  </marker>
+
+</defs>
+
+<script type='text/javascript'>
+  <![CDATA[
+    function hgText(evt){evt.target.setAttribute('style','text-decoration:underline;fill:blue;'); }
+    function uhgText(evt){evt.target.setAttribute('style','text-decoration:none;fill:black;'); }
+    function hgPath(evt){evt.target.setAttribute('style','stroke:blue;stroke-width:2;');}
+    function uhgPath(evt){evt.target.setAttribute('style','stroke:#776c57;stroke-width:1;');}
+  ]]>
+</script>
+
+<!-- ############### Desktop ############# -->
+<rect x='1' y='1' width='1272' height='924' rx='6' ry='6' style='fill:url(#imageBackground); stroke:#939ea4; stroke-width:1;' />
+
+<!-- ############### Group 'Age' ############# -->
+<rect  class='grp' style='fill:#6666ff;' x='456' y='19' width='206' height='248' rx='7' ry='7'/>
+<text x='469' y='32'>Age</text>
+
+<!-- ############### Group 'Fact' ############# -->
+<rect  class='grp' style='fill:#66ff66;' x='469' y='331' width='180' height='183' rx='7' ry='7'/>
+<text x='482' y='344'>Fact</text>
+
+<!-- ############### Group 'Gender' ############# -->
+<rect  class='grp' style='fill:#ff9900;' x='911' y='344' width='154' height='105' rx='7' ry='7'/>
+<text x='924' y='357'>Gender</text>
+
+<!-- ############### Group 'Location' ############# -->
+<rect  class='grp' style='fill:#ff0000;' x='833' y='97' width='414' height='222' rx='7' ry='7'/>
+<text x='846' y='110'>Location</text>
+
+<!-- ############### Group 'Mental Illness' ############# -->
+<rect  class='grp' style='fill:#ffff33;' x='625' y='656' width='180' height='105' rx='7' ry='7'/>
+<text x='638' y='669'>Mental Illness</text>
+
+<!-- ############### Group 'Race' ############# -->
+<rect  class='grp' style='fill:#993300;' x='885' y='643' width='154' height='105' rx='7' ry='7'/>
+<text x='898' y='656'>Race</text>
+
+<!-- ############### Group 'Time ' ############# -->
+<rect  class='grp' style='fill:#00ccff;' x='27' y='32' width='336' height='352' rx='7' ry='7'/>
+<text x='40' y='45'>Time </text>
+
+<!-- ############### Group 'Weapon' ############# -->
+<rect  class='grp' style='fill:#333333;' x='222' y='552' width='180' height='235' rx='7' ry='7'/>
+<text x='235' y='565'>Weapon</text>
+
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_0' d='M 598 221 L 656,221 Q 663,221 663,214 L 663,71 Q 663,65 656,65 L 650,65'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<!-- ############### Table 'Age' ############# -->
+<rect class='table' x='468' y='176' width='130' height='65' rx='6' ry='6' />
+<path d='M 469 196 L 469 183 Q 469 177 475 177 L 591 177 Q 597 177 597 183 L 597 196 L469 196 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#Age' title='Age' ><text x='481' y='191' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>Age</text></a>
+  <use id='pk' x='468' y='204' xlink:href='#pk'/><a xlink:href='#idAge' title='idAge integer'><text x='481' y='214' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idAge</text><text x='539' y='214' class='coltype'>INTEGER</text></a>
+  <use id='idx' x='468' y='217' xlink:href='#idx'/><a xlink:href='#idAgeGroup' title='idAgeGroup integer'><text x='481' y='227' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idAgeGroup</text><text x='539' y='227' class='coltype'>INTEGER</text></a>
+
+
+<rect class='tableborder' x='468' y='176' width='130' height='65' rx='6' ry='6' />
+<!-- ############### Table 'AgeGroup' ############# -->
+<rect class='table' x='494' y='33' width='156' height='65' rx='6' ry='6' />
+<path d='M 495 53 L 495 40 Q 495 34 501 34 L 643 34 Q 649 34 649 40 L 649 53 L495 53 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#AgeGroup' title='AgeGroup' ><text x='507' y='48' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>AgeGroup</text></a>
+  <use id='pk' x='494' y='61' xlink:href='#pk'/><a xlink:href='#idAgeGroup' title='idAgeGroup integer'><text x='507' y='71' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idAgeGroup</text><text x='565' y='71' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#AGName' title='AGName varchar(50)'><text x='507' y='84' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>AGName</text><text x='565' y='84' class='coltype'>VARCHAR(50)</text></a>
+
+
+<rect class='tableborder' x='494' y='33' width='156' height='65' rx='6' ry='6' />
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_0' d='M 1053 156 L 1072,156 Q 1079,156 1079,162 L 1079,188 Q 1079,195 1085,195 L 1092,195'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<!-- ############### Table 'City' ############# -->
+<rect class='table' x='845' y='111' width='208' height='182' rx='6' ry='6' />
+<path d='M 846 131 L 846 118 Q 846 112 852 112 L 1046 112 Q 1052 112 1052 118 L 1052 131 L846 131 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#City' title='City' ><text x='858' y='126' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>City</text></a>
+  <use id='pk' x='845' y='139' xlink:href='#pk'/><a xlink:href='#idCity' title='idCity integer'><text x='858' y='149' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idCity</text><text x='970' y='149' class='coltype'>INTEGER</text></a>
+  <use id='idx' x='845' y='152' xlink:href='#idx'/><a xlink:href='#idState' title='idState integer'><text x='858' y='162' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idState</text><text x='970' y='162' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#CName' title='CName varchar(50)'><text x='858' y='175' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CName</text><text x='970' y='175' class='coltype'>VARCHAR(50)</text></a>
+  <a xlink:href='#CHighSchoolLevel' title='CHighSchoolLevel double'><text x='858' y='188' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CHighSchoolLevel</text><text x='970' y='188' class='coltype'>DOUBLE</text></a>
+  <a xlink:href='#CPovertyLevel' title='CPovertyLevel double'><text x='858' y='201' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CPovertyLevel</text><text x='970' y='201' class='coltype'>DOUBLE</text></a>
+  <a xlink:href='#CHouseholdIncome' title='CHouseholdIncome integer'><text x='858' y='214' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CHouseholdIncome</text><text x='970' y='214' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#CShareWhite' title='CShareWhite double'><text x='858' y='227' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CShareWhite</text><text x='970' y='227' class='coltype'>DOUBLE</text></a>
+  <a xlink:href='#CShareBlack' title='CShareBlack double'><text x='858' y='240' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CShareBlack</text><text x='970' y='240' class='coltype'>DOUBLE</text></a>
+  <a xlink:href='#CShareNativeAmerican' title='CShareNativeAmerican double'><text x='858' y='253' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CShareNativeAmerican</text><text x='970' y='253' class='coltype'>DOUBLE</text></a>
+  <a xlink:href='#CShareAsian' title='CShareAsian double'><text x='858' y='266' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CShareAsian</text><text x='970' y='266' class='coltype'>DOUBLE</text></a>
+  <a xlink:href='#CShareHispanic' title='CShareHispanic double'><text x='858' y='279' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>CShareHispanic</text><text x='970' y='279' class='coltype'>DOUBLE</text></a>
+
+
+<rect class='tableborder' x='845' y='111' width='208' height='182' rx='6' ry='6' />
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_0' d='M 637 390 L 812,390 Q 819,390 819,383 L 819,149 Q 819,143 825,143 L 832,143'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_1' d='M 468 377 L 370,377 Q 364,377 364,370 L 364,110 Q 364,104 357,104 L 351,104'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_2' d='M 637 442 L 799,442 Q 806,442 806,448 L 806,695 Q 806,702 799,702 L 793,702'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_3' d='M 637 455 L 890,455 Q 897,455 897,448 L 897,396 Q 897,390 903,390 L 910,390'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_4' d='M 637 429 L 864,429 Q 871,429 871,435 L 871,682 Q 871,689 877,689 L 884,689'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_5' d='M 468 416 L 409,416 Q 403,416 403,422 L 403,591 Q 403,598 396,598 L 390,598'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_6' d='M 468 403 L 448,403 Q 442,403 442,396 L 442,214 Q 442,208 448,208 L 455,208'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<!-- ############### Table 'Fatalities' ############# -->
+<rect class='table' x='481' y='345' width='156' height='143' rx='6' ry='6' />
+<path d='M 482 365 L 482 352 Q 482 346 488 346 L 630 346 Q 636 346 636 352 L 636 365 L482 365 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#Fatalities' title='Fatalities' ><text x='494' y='360' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>Fatalities</text></a>
+  <use id='pk' x='481' y='373' xlink:href='#pk'/><a xlink:href='#idDay' title='idDay integer'><text x='494' y='383' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idDay</text><text x='585' y='383' class='coltype'>INTEGER</text></a>
+  <use id='pk' x='481' y='386' xlink:href='#pk'/><a xlink:href='#idCity' title='idCity integer'><text x='494' y='396' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idCity</text><text x='585' y='396' class='coltype'>INTEGER</text></a>
+  <use id='pk' x='481' y='399' xlink:href='#pk'/><a xlink:href='#idAge' title='idAge integer'><text x='494' y='409' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idAge</text><text x='585' y='409' class='coltype'>INTEGER</text></a>
+  <use id='pk' x='481' y='412' xlink:href='#pk'/><a xlink:href='#idWeapon' title='idWeapon integer'><text x='494' y='422' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idWeapon</text><text x='585' y='422' class='coltype'>INTEGER</text></a>
+  <use id='pk' x='481' y='425' xlink:href='#pk'/><a xlink:href='#idRace' title='idRace integer'><text x='494' y='435' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idRace</text><text x='585' y='435' class='coltype'>INTEGER</text></a>
+  <use id='pk' x='481' y='438' xlink:href='#pk'/><a xlink:href='#idMentalIllness' title='idMentalIllness integer'><text x='494' y='448' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idMentalIllness</text><text x='585' y='448' class='coltype'>INTEGER</text></a>
+  <use id='pk' x='481' y='451' xlink:href='#pk'/><a xlink:href='#idGender' title='idGender integer'><text x='494' y='461' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idGender</text><text x='585' y='461' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#NumberOfFatalities' title='NumberOfFatalities integer'><text x='494' y='474' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>NumberOfFatalities</text><text x='585' y='474' class='coltype'>INTEGER</text></a>
+
+
+<rect class='tableborder' x='481' y='345' width='156' height='143' rx='6' ry='6' />
+<!-- ############### Table 'Gender' ############# -->
+<rect class='table' x='923' y='358' width='130' height='65' rx='6' ry='6' />
+<path d='M 924 378 L 924 365 Q 924 359 930 359 L 1046 359 Q 1052 359 1052 365 L 1052 378 L924 378 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#Gender' title='Gender' ><text x='936' y='373' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>Gender</text></a>
+  <use id='pk' x='923' y='386' xlink:href='#pk'/><a xlink:href='#idGender' title='idGender integer'><text x='936' y='396' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idGender</text><text x='980' y='396' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#GName' title='GName varchar(6)'><text x='936' y='409' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>GName</text><text x='980' y='409' class='coltype'>VARCHAR(6)</text></a>
+
+
+<rect class='tableborder' x='923' y='358' width='130' height='65' rx='6' ry='6' />
+<!-- ############### Table 'MentalIllness' ############# -->
+<rect class='table' x='637' y='670' width='156' height='65' rx='6' ry='6' />
+<path d='M 638 690 L 638 677 Q 638 671 644 671 L 786 671 Q 792 671 792 677 L 792 690 L638 690 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#MentalIllness' title='MentalIllness' ><text x='650' y='685' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>MentalIllness</text></a>
+  <use id='pk' x='637' y='698' xlink:href='#pk'/><a xlink:href='#idMentalIllness' title='idMentalIllness integer'><text x='650' y='708' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idMentalIllness</text><text x='719' y='708' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#MIVal' title='MIVal varchar(5)'><text x='650' y='721' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>MIVal</text><text x='719' y='721' class='coltype'>VARCHAR(5)</text></a>
+
+
+<rect class='tableborder' x='637' y='670' width='156' height='65' rx='6' ry='6' />
+<!-- ############### Table 'Race' ############# -->
+<rect class='table' x='897' y='657' width='130' height='65' rx='6' ry='6' />
+<path d='M 898 677 L 898 664 Q 898 658 904 658 L 1020 658 Q 1026 658 1026 664 L 1026 677 L898 677 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#Race' title='Race' ><text x='910' y='672' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>Race</text></a>
+  <use id='pk' x='897' y='685' xlink:href='#pk'/><a xlink:href='#idRace' title='idRace integer'><text x='910' y='695' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idRace</text><text x='944' y='695' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#RName' title='RName varchar(50)'><text x='910' y='708' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>RName</text><text x='944' y='708' class='coltype'>VARCHAR(50)</text></a>
+
+
+<rect class='tableborder' x='897' y='657' width='130' height='65' rx='6' ry='6' />
+<!-- ############### Table 'State' ############# -->
+<rect class='table' x='1105' y='163' width='130' height='78' rx='6' ry='6' />
+<path d='M 1106 183 L 1106 170 Q 1106 164 1112 164 L 1228 164 Q 1234 164 1234 170 L 1234 183 L1106 183 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#State' title='State' ><text x='1118' y='178' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>State</text></a>
+  <use id='pk' x='1105' y='191' xlink:href='#pk'/><a xlink:href='#idState' title='idState integer'><text x='1118' y='201' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idState</text><text x='1152' y='201' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#SCode' title='SCode varchar(2)'><text x='1118' y='214' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>SCode</text><text x='1152' y='214' class='coltype'>VARCHAR(2)</text></a>
+  <a xlink:href='#SName' title='SName varchar(50)'><text x='1118' y='227' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>SName</text><text x='1152' y='227' class='coltype'>VARCHAR(50)</text></a>
+
+
+<rect class='tableborder' x='1105' y='163' width='130' height='78' rx='6' ry='6' />
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_0' d='M 221 117 L 201,117 Q 195,117 195,110 L 195,84 Q 195,78 188,78 L 182,78'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<!-- ############### Table 'TDay' ############# -->
+<rect class='table' x='234' y='72' width='117' height='78' rx='6' ry='6' />
+<path d='M 235 92 L 235 79 Q 235 73 241 73 L 344 73 Q 350 73 350 79 L 350 92 L235 92 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#TDay' title='TDay' ><text x='247' y='87' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>TDay</text></a>
+  <use id='pk' x='234' y='100' xlink:href='#pk'/><a xlink:href='#idDay' title='idDay integer'><text x='247' y='110' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idDay</text><text x='292' y='110' class='coltype'>INTEGER</text></a>
+  <use id='idx' x='234' y='113' xlink:href='#idx'/><a xlink:href='#idMonth' title='idMonth integer'><text x='247' y='123' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idMonth</text><text x='292' y='123' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#DDateVal' title='DDateVal date'><text x='247' y='136' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>DDateVal</text><text x='292' y='136' class='coltype'>DATE</text></a>
+
+
+<rect class='tableborder' x='234' y='72' width='117' height='78' rx='6' ry='6' />
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_0' d='M 26 91 L 19,91 Q 13,91 13,97 L 13,318 Q 13,325 19,325 L 78,325'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<!-- ############### Table 'TMonth' ############# -->
+<rect class='table' x='39' y='46' width='143' height='91' rx='6' ry='6' />
+<path d='M 40 66 L 40 53 Q 40 47 46 47 L 175 47 Q 181 47 181 53 L 181 66 L40 66 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#TMonth' title='TMonth' ><text x='52' y='61' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>TMonth</text></a>
+  <use id='pk' x='39' y='74' xlink:href='#pk'/><a xlink:href='#idMonth' title='idMonth integer'><text x='52' y='84' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idMonth</text><text x='103' y='84' class='coltype'>INTEGER</text></a>
+  <use id='idx' x='39' y='87' xlink:href='#idx'/><a xlink:href='#idYear' title='idYear integer'><text x='52' y='97' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idYear</text><text x='103' y='97' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#MNumVal' title='MNumVal integer'><text x='52' y='110' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>MNumVal</text><text x='103' y='110' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#MNameVal' title='MNameVal varchar(20)'><text x='52' y='123' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>MNameVal</text><text x='103' y='123' class='coltype'>VARCHAR(20)</text></a>
+
+
+<rect class='tableborder' x='39' y='46' width='143' height='91' rx='6' ry='6' />
+<!-- ############### Table 'TYear' ############# -->
+<rect class='table' x='91' y='293' width='117' height='65' rx='6' ry='6' />
+<path d='M 92 313 L 92 300 Q 92 294 98 294 L 201 294 Q 207 294 207 300 L 207 313 L92 313 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#TYear' title='TYear' ><text x='104' y='308' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>TYear</text></a>
+  <use id='pk' x='91' y='321' xlink:href='#pk'/><a xlink:href='#idYear' title='idYear integer'><text x='104' y='331' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idYear</text><text x='149' y='331' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#YNumVal' title='YNumVal integer'><text x='104' y='344' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>YNumVal</text><text x='149' y='344' class='coltype'>INTEGER</text></a>
+
+
+<rect class='tableborder' x='91' y='293' width='117' height='65' rx='6' ry='6' />
+<path transform='translate(6,0)' marker-start='url(#foot)' marker-end='url(#arrow)'  title='Fk_0' d='M 234 611 L 214,611 Q 208,611 208,617 L 208,721 Q 208,728 214,728 L 221,728'  onmouseover='hgPath(evt);' onmouseout='uhgPath(evt);'  />
+
+<!-- ############### Table 'Weapon' ############# -->
+<rect class='table' x='247' y='566' width='143' height='78' rx='6' ry='6' />
+<path d='M 248 586 L 248 573 Q 248 567 254 567 L 383 567 Q 389 567 389 573 L 389 586 L248 586 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#Weapon' title='Weapon' ><text x='260' y='581' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>Weapon</text></a>
+  <use id='pk' x='247' y='594' xlink:href='#pk'/><a xlink:href='#idWeapon' title='idWeapon integer'><text x='260' y='604' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idWeapon</text><text x='308' y='604' class='coltype'>INTEGER</text></a>
+  <use id='idx' x='247' y='607' xlink:href='#idx'/><a xlink:href='#idClass' title='idClass integer'><text x='260' y='617' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idClass</text><text x='308' y='617' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#WName' title='WName varchar(50)'><text x='260' y='630' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>WName</text><text x='308' y='630' class='coltype'>VARCHAR(50)</text></a>
+
+
+<rect class='tableborder' x='247' y='566' width='143' height='78' rx='6' ry='6' />
+<!-- ############### Table 'WeaponClass' ############# -->
+<rect class='table' x='234' y='696' width='117' height='65' rx='6' ry='6' />
+<path d='M 235 716 L 235 703 Q 235 697 241 697 L 344 697 Q 350 697 350 703 L 350 716 L235 716 ' style='fill:url(#grTableHeader); stroke:none;' />
+<a xlink:href='#WeaponClass' title='WeaponClass' ><text x='247' y='711' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>WeaponClass</text></a>
+  <use id='pk' x='234' y='724' xlink:href='#pk'/><a xlink:href='#idClass' title='idClass integer'><text x='247' y='734' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>idClass</text><text x='291' y='734' class='coltype'>INTEGER</text></a>
+  <a xlink:href='#WCName' title='WCName integer'><text x='247' y='747' onmouseover='hgText(evt);' onmouseout='uhgText(evt);'>WCName</text><text x='291' y='747' class='coltype'>INTEGER</text></a>
+
+
+<rect class='tableborder' x='234' y='696' width='117' height='65' rx='6' ry='6' />
+<g transform='translate(994,806)'>  <rect x='10' y='10' width='240' height='45' rx='6' ry='6' style='fill:url(#legendGradient);' />
+  <text x='25' y='22' style='fill:white;' >Layout Default</text>
+  <text x='25' y='36' style='fill:white;' >Project snowflake</text>
+  <a xlink:href='http://www.dbschema.com'>
+    <text x='25' y='50' style='fill:white;' >28 Jun 2020 by DbSchema</text>
+  </a>
+</g>
+
+</svg>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='Age'>Table Age</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idAge'>idAge</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idAgeGroup'>idAgeGroup</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_6 primary key</td>
+<td> ( idAge) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_Age </td>
+<td> ( idAgeGroup) </td><td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Foreign Keys</b></td></tr>
+<tr>
+<td class='name'>Fk_0</td><td > (  idAgeGroup  ) ref <a href='#AgeGroup'>AgeGroup</a> ( idAgeGroup ) </td>
+<td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='AgeGroup'>Table AgeGroup</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idAgeGroup'>idAgeGroup</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='AGName'>AGName</a></td>
+<td> VARCHAR( 50 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_4 primary key</td>
+<td> ( idAgeGroup) </td><td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='City'>Table City</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idCity'>idCity</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idState'>idState</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CName'>CName</a></td>
+<td> VARCHAR( 50 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CHighSchoolLevel'>CHighSchoolLevel</a></td>
+<td> DOUBLE    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CPovertyLevel'>CPovertyLevel</a></td>
+<td> DOUBLE    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CHouseholdIncome'>CHouseholdIncome</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CShareWhite'>CShareWhite</a></td>
+<td> DOUBLE    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CShareBlack'>CShareBlack</a></td>
+<td> DOUBLE    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CShareNativeAmerican'>CShareNativeAmerican</a></td>
+<td> DOUBLE    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CShareAsian'>CShareAsian</a></td>
+<td> DOUBLE    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='CShareHispanic'>CShareHispanic</a></td>
+<td> DOUBLE    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_1 primary key</td>
+<td> ( idCity) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_City </td>
+<td> ( idState) </td><td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Foreign Keys</b></td></tr>
+<tr>
+<td class='name'>Fk_0</td><td > (  idState  ) ref <a href='#State'>State</a> ( idState ) </td>
+<td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='Fatalities'>Table Fatalities</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idDay'>idDay</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idCity'>idCity</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idAge'>idAge</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idWeapon'>idWeapon</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idRace'>idRace</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idMentalIllness'>idMentalIllness</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idGender'>idGender</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='NumberOfFatalities'>NumberOfFatalities</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>idx_Fatalities </td>
+<td> ( idCity) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_Fatalities </td>
+<td> ( idDay) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_Fatalities </td>
+<td> ( idMentalIllness) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_Fatalities </td>
+<td> ( idGender) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_Fatalities </td>
+<td> ( idRace) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_Fatalities </td>
+<td> ( idWeapon) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_Fatalities </td>
+<td> ( idAge) </td><td>  </td>
+</tr>
+<tr><td class='name'>Idx primary key</td>
+<td> ( idDay, idCity, idAge, idWeapon, idRace, idMentalIllness, idGender) </td><td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Foreign Keys</b></td></tr>
+<tr>
+<td class='name'>Fk_0</td><td > (  idCity  ) ref <a href='#City'>City</a> ( idCity ) </td>
+<td>  </td>
+</tr>
+<tr>
+<td class='name'>Fk_1</td><td > (  idDay  ) ref <a href='#TDay'>TDay</a> ( idDay ) </td>
+<td>  </td>
+</tr>
+<tr>
+<td class='name'>Fk_2</td><td > (  idMentalIllness  ) ref <a href='#MentalIllness'>MentalIllness</a> ( idMentalIllness ) </td>
+<td>  </td>
+</tr>
+<tr>
+<td class='name'>Fk_3</td><td > (  idGender  ) ref <a href='#Gender'>Gender</a> ( idGender ) </td>
+<td>  </td>
+</tr>
+<tr>
+<td class='name'>Fk_4</td><td > (  idRace  ) ref <a href='#Race'>Race</a> ( idRace ) </td>
+<td>  </td>
+</tr>
+<tr>
+<td class='name'>Fk_5</td><td > (  idWeapon  ) ref <a href='#Weapon'>Weapon</a> ( idWeapon ) </td>
+<td>  </td>
+</tr>
+<tr>
+<td class='name'>Fk_6</td><td > (  idAge  ) ref <a href='#Age'>Age</a> ( idAge ) </td>
+<td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='Gender'>Table Gender</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idGender'>idGender</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='GName'>GName</a></td>
+<td> VARCHAR( 6 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_7 primary key</td>
+<td> ( idGender) </td><td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='MentalIllness'>Table MentalIllness</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idMentalIllness'>idMentalIllness</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='MIVal'>MIVal</a></td>
+<td> VARCHAR( 5 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_7 primary key</td>
+<td> ( idMentalIllness) </td><td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='Race'>Table Race</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idRace'>idRace</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='RName'>RName</a></td>
+<td> VARCHAR( 50 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_6 primary key</td>
+<td> ( idRace) </td><td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='State'>Table State</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idState'>idState</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='SCode'>SCode</a></td>
+<td> VARCHAR( 2 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='SName'>SName</a></td>
+<td> VARCHAR( 50 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table primary key</td>
+<td> ( idState) </td><td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='TDay'>Table TDay</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idDay'>idDay</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idMonth'>idMonth</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='DDateVal'>DDateVal</a></td>
+<td> DATE    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_1 primary key</td>
+<td> ( idDay) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_TDay </td>
+<td> ( idMonth) </td><td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Foreign Keys</b></td></tr>
+<tr>
+<td class='name'>Fk_0</td><td > (  idMonth  ) ref <a href='#TMonth'>TMonth</a> ( idMonth ) </td>
+<td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='TMonth'>Table TMonth</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idMonth'>idMonth</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idYear'>idYear</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='MNumVal'>MNumVal</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='MNameVal'>MNameVal</a></td>
+<td> VARCHAR( 20 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_2 primary key</td>
+<td> ( idMonth) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_TMonth </td>
+<td> ( idYear) </td><td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Foreign Keys</b></td></tr>
+<tr>
+<td class='name'>Fk_0</td><td > (  idYear  ) ref <a href='#TYear'>TYear</a> ( idYear ) </td>
+<td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='TYear'>Table TYear</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idYear'>idYear</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='YNumVal'>YNumVal</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_5 primary key</td>
+<td> ( idYear) </td><td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='Weapon'>Table Weapon</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idWeapon'>idWeapon</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='idClass'>idClass</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='WName'>WName</a></td>
+<td> VARCHAR( 50 )    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_6 primary key</td>
+<td> ( idWeapon) </td><td>  </td>
+</tr>
+<tr><td class='name'>idx_Weapon </td>
+<td> ( idClass) </td><td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Foreign Keys</b></td></tr>
+<tr>
+<td class='name'>Fk_0</td><td > (  idClass  ) ref <a href='#WeaponClass'>WeaponClass</a> ( idClass ) </td>
+<td>  </td>
+</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='WeaponClass'>Table WeaponClass</a> <br/> </th></tr>
+</thead>
+<tbody>
+<tr><td class='name'><a name='idClass'>idClass</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td class='name'><a name='WCName'>WCName</a></td>
+<td> INTEGER    NOT NULL   </td>
+<td>  </td>
+</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+<tr><td class='name'>PK_Table_3 primary key</td>
+<td> ( idClass) </td><td>  </td>
+</tr>
+</tbody>
+</table>
+
+</body></html>

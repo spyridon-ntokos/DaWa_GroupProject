@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="US_Police_Fatalities_Stage" version="42" database="Cache" >
+	<schema name="US_Police_Fatalities_Staging" schemaname="US_Police_Fatalities_Staging" defo="y" >
+		<table name="Fatality" storage="" >
+			<column name="idFatality" type="INTEGER" jt="4" mandatory="y" />
+			<column name="FName" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="FDate" type="DATE" jt="91" mandatory="y" />
+			<column name="FCity" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="idState" type="INTEGER" jt="4" mandatory="y" />
+			<column name="FAge" type="INTEGER" jt="4" mandatory="y" />
+			<column name="FWeapon" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="FRace" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<column name="FMentalIllness" type="VARCHAR" length="5" jt="12" mandatory="y" />
+			<column name="FGender" type="VARCHAR" length="6" jt="12" mandatory="y" />
+			<index name="PK_Table_0" unique="PRIMARY_KEY" >
+				<column name="idFatality" />
+			</index>
+			<index name="idx_Fatality" unique="NORMAL" >
+				<column name="idState" />
+			</index>
+			<fk name="Fk_0" to_schema="US_Police_Fatalities_Staging" to_table="State" >
+				<fk_column name="idState" pk="idState" />
+			</fk>
+		</table>
+		<table name="State" >
+			<column name="idState" type="INTEGER" jt="4" mandatory="y" />
+			<column name="SCode" type="VARCHAR" length="2" jt="12" mandatory="y" />
+			<column name="SName" type="VARCHAR" length="50" jt="12" mandatory="y" />
+			<index name="PK_Table_1" unique="PRIMARY_KEY" >
+				<column name="idState" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Default" tab_index="0" >
+		<entity schema="US_Police_Fatalities_Staging" name="Fatality" x="39" y="39" />
+		<entity schema="US_Police_Fatalities_Staging" name="State" x="338" y="130" />
+		<query name="Sql_000" tab_index="0" >
+			<string> <![CDATA[CREATE SCHEMA US_Police_Fatalities_Staging;
+
+CREATE TABLE US_Police_Fatalities_Staging.City ( 
+    idCity INTEGER NOT NULL    ,
+    idState INTEGER NOT NULL    ,
+    CName VARCHAR( 50 ) NOT NULL    ,
+CONSTRAINT PK_Table PRIMARY KEY ( idCity )
+ ) ;
+
+CREATE INDEX idx_City ON US_Police_Fatalities_Staging.City ( idState );
+
+CREATE TABLE US_Police_Fatalities_Staging.Fatality ( 
+    idFatality INTEGER NOT NULL    ,
+    FName VARCHAR( 50 ) NOT NULL    ,
+    FDate DATE NOT NULL    ,
+    idCity INTEGER NOT NULL    ,
+    FAge INTEGER NOT NULL    ,
+    FWeapon VARCHAR( 50 ) NOT NULL    ,
+    FRace VARCHAR( 50 ) NOT NULL    ,
+    FMentalIllness VARCHAR( 5 ) NOT NULL    ,
+    FGender VARCHAR( 6 ) NOT NULL    ,
+CONSTRAINT PK_Table_0 PRIMARY KEY ( idFatality ),
+CONSTRAINT Pk_Fatality UNIQUE ( idCity ),
+CONSTRAINT idx_Fatality UNIQUE ( idCity )
+ ) ;
+
+CREATE TABLE US_Police_Fatalities_Staging.State ( 
+    idState INTEGER NOT NULL    ,
+    SCode VARCHAR( 2 ) NOT NULL    ,
+    SName VARCHAR( 50 ) NOT NULL    ,
+CONSTRAINT PK_Table_1 PRIMARY KEY ( idState )
+ ) ;
+
+ALTER TABLE US_Police_Fatalities_Staging.City ADD FOREIGN KEY Fk_0 ( idState ) REFERENCES US_Police_Fatalities_Staging.State( idState ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE US_Police_Fatalities_Staging.Fatality ADD FOREIGN KEY Fk_0 ( idCity ) REFERENCES US_Police_Fatalities_Staging.City( idCity ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+]]> </string>
+		</query>
+	</layout>
+</project>
